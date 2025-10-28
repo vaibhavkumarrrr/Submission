@@ -2,6 +2,7 @@ Relation ship identified-
 
 User to Account [One TO Many]-Assumption
 Accounts to Bank [Many to One]
+
 Bank to Branch [One to many]
 
 authentication-authorization is done with swagger.
