@@ -1,0 +1,24 @@
+Problem statement-
+To design and Implement a Account Management system.
+Actors are users-Accounts-Bank-Branch
+1. Have baseEntity-createdon,Modifiedon,CreatedBy data with tables.
+2. Shema name = Training.
+
+Accounts are classified as 2, withdrawable and non withdrawable.
+And functionalities as limited accordingly.
+Withdrawable are of 2 types- Current account And Savings Account
+Non withdrawable is FDAccount
+
+Users of 2 types- BankUser and NormalUser
+
+users register and log in (admins, bank employees, customers)
+JWT tokens signed with RS256 for login sessions
+Link employees and customers to their bank and account
+create REST API- FOR user- account-bank
+Provide refresh tokens along with access tokens-Maybe
+Db should have proper relationships and foreign keys.
+Handle errors and inputs properly.
+
+AUTHENTICATION- JWT TOKENS WITH SHA256- LIFE TIME 15 MINS
+
+AUTHORIZATION - ViewOnly, Admin , SuperUser.

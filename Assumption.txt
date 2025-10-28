@@ -1,0 +1,18 @@
+Relation ship identified-
+
+User to Account [One TO Many]-Assumption
+Accounts to Bank [Many to One]
+Bank to Branch [One to many]
+
+authentication-authorization is done with swagger.
+Using the identitroles method , from ASP.NETcore.jwt.Authentication 
+
+RBAC- is extended only on the Actions and not as a actor.
+
+ViewOnly--->readonly 
+Admin , SuperUser------>write
+
+p.s core concepts is , both cateogory would have different jwt tokens, and would be bound to authorize to the same.
+
+
+Example- BankManger has SuperUser access.

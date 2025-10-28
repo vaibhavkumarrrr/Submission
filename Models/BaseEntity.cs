@@ -8,8 +8,9 @@
 
         public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
 
-
         public DateTime? ModifiedOn { get; set; }
+
+        
     }
 }
 
