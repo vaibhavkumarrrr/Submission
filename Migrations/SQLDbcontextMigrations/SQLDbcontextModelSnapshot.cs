@@ -4,19 +4,16 @@ using AMSSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace AMSSystem.Migrations
+namespace AMSSystem.Migrations.SQLDbcontextMigrations
 {
     [DbContext(typeof(SQLDbcontext))]
-    [Migration("20251027190030_IntialMig")]
-    partial class IntialMig
+    partial class SQLDbcontextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,6 +35,9 @@ namespace AMSSystem.Migrations
 
                     b.Property<int>("AccountType")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("Balance")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("BankId")
                         .HasColumnType("int");
@@ -66,7 +66,9 @@ namespace AMSSystem.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("accounts");
+                    b.ToTable("Accounts", "Training");
+
+                    b.UseTptMappingStrategy();
                 });
 
             modelBuilder.Entity("AMSSystem.Models.Bank", b =>
@@ -108,7 +110,7 @@ namespace AMSSystem.Migrations
 
                     b.HasIndex("BranchId");
 
-                    b.ToTable("banks");
+                    b.ToTable("Banks", "Training");
                 });
 
             modelBuilder.Entity("AMSSystem.Models.Branch", b =>
@@ -150,7 +152,7 @@ namespace AMSSystem.Migrations
 
                     b.HasIndex("BankId");
 
-                    b.ToTable("branches");
+                    b.ToTable("Branch", "Training");
                 });
 
             modelBuilder.Entity("AMSSystem.Models.User", b =>
@@ -191,7 +193,56 @@ namespace AMSSystem.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.ToTable("users");
+                    b.ToTable("Users", "Training");
+
+                    b.UseTptMappingStrategy();
+                });
+
+            modelBuilder.Entity("AMSSystem.Models.Account+CurrentAccount", b =>
+                {
+                    b.HasBaseType("AMSSystem.Models.Account");
+
+                    b.Property<decimal>("WithDrawAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.ToTable("CurrentAccounts", "Training");
+                });
+
+            modelBuilder.Entity("AMSSystem.Models.Account+FixedDepositAccount", b =>
+                {
+                    b.HasBaseType("AMSSystem.Models.Account");
+
+                    b.Property<DateTime>("Maturitydate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("RateofInterest")
+                        .HasColumnType("int");
+
+                    b.ToTable("FDAccount", "Training");
+                });
+
+            modelBuilder.Entity("AMSSystem.Models.Account+SavingsAccount", b =>
+                {
+                    b.HasBaseType("AMSSystem.Models.Account");
+
+                    b.Property<decimal>("WithDrawAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.ToTable("SavingsAccount", "Training");
+                });
+
+            modelBuilder.Entity("AMSSystem.Models.User+BankUser", b =>
+                {
+                    b.HasBaseType("AMSSystem.Models.User");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EmployeeName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("BankUser", "Training");
                 });
 
             modelBuilder.Entity("AMSSystem.Models.Account", b =>
@@ -202,15 +253,15 @@ namespace AMSSystem.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AMSSystem.Models.User", "User")
+                    b.HasOne("AMSSystem.Models.User", "user")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("User");
-
                     b.Navigation("bank");
+
+                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("AMSSystem.Models.Bank", b =>
@@ -238,15 +289,51 @@ namespace AMSSystem.Migrations
             modelBuilder.Entity("AMSSystem.Models.User", b =>
                 {
                     b.HasOne("AMSSystem.Models.Account", null)
-                        .WithMany("Users")
+                        .WithMany("users")
                         .HasForeignKey("AccountId");
+                });
+
+            modelBuilder.Entity("AMSSystem.Models.Account+CurrentAccount", b =>
+                {
+                    b.HasOne("AMSSystem.Models.Account", null)
+                        .WithOne()
+                        .HasForeignKey("AMSSystem.Models.Account+CurrentAccount", "AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AMSSystem.Models.Account+FixedDepositAccount", b =>
+                {
+                    b.HasOne("AMSSystem.Models.Account", null)
+                        .WithOne()
+                        .HasForeignKey("AMSSystem.Models.Account+FixedDepositAccount", "AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AMSSystem.Models.Account+SavingsAccount", b =>
+                {
+                    b.HasOne("AMSSystem.Models.Account", null)
+                        .WithOne()
+                        .HasForeignKey("AMSSystem.Models.Account+SavingsAccount", "AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AMSSystem.Models.User+BankUser", b =>
+                {
+                    b.HasOne("AMSSystem.Models.User", null)
+                        .WithOne()
+                        .HasForeignKey("AMSSystem.Models.User+BankUser", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("AMSSystem.Models.Account", b =>
                 {
-                    b.Navigation("Users");
-
                     b.Navigation("banks");
+
+                    b.Navigation("users");
                 });
 
             modelBuilder.Entity("AMSSystem.Models.Bank", b =>

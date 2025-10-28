@@ -18,3 +18,11 @@ create REST API- FOR user- account-bank
 Provide refresh tokens along with access tokens-Maybe
 Db should have proper relationships and foreign keys.
 Handle errors and inputs properly.
+
+
+AUTHENTICATION- JWT TOKENS WITH SHA256- LIFE TIME 15 MINS
+
+AUTHORIZATION - ViewOnly, Admin , SuperUser.
+
+
+

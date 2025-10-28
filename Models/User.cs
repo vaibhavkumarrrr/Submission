@@ -1,6 +1,6 @@
 ﻿namespace AMSSystem.Models
 {
-    public class User :BaseEntity<long>
+    public class User : BaseEntity<long>
     {
         public int UserId { get; set; }
         //public int AccountId { get; set; }
@@ -13,6 +13,18 @@
 
         //public Account Account { get; set; } = new Account();
 
-        //public List<Account> accounts { get; set; }
+        //public ICollection<Account> accounts { get; set; } = new List<Account>();
+
+
+        public class BankUser : User
+        {
+            
+            public int EmployeeId { get; set; }
+           // public Bank Bank { get; set; } = new Bank();
+            public string EmployeeName { get; set; } = string.Empty;
+
+            //public int BankId { get; set; }
+
+        }
     }
 }
