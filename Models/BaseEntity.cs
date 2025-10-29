@@ -1,6 +1,6 @@
 ﻿namespace AMSSystem.Models
 {
-    public abstract class BaseEntity<T>
+    public abstract class BaseEntity
     {
         public int CreatedBy { get; set; }
 

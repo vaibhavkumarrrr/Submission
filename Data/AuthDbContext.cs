@@ -18,6 +18,7 @@ namespace AMSSystem.Data
             var ReaderRoleId = "eb91c622-04cb-46a7-8282-09bf71864197";
             var WriterRoleId = "eb91c622-04cb-46a7-8282-09bf71864198";
             var SuperUserRoleId = "eb91c622-04cb-46a7-8282-09bf71864199";
+            var SysAdminRoleId = "eb91c622-04cb-46a7-8282-09bf71864188";
 
 
             var roles = new List<IdentityRole>
@@ -42,6 +43,13 @@ namespace AMSSystem.Data
                     ConcurrencyStamp = SuperUserRoleId ,
                     Name = "SuperUser",
                     NormalizedName = "SuperUser".ToUpper()
+                },
+                new IdentityRole
+                {
+                    Id = SysAdminRoleId ,
+                    ConcurrencyStamp = SysAdminRoleId ,
+                    Name = "SysAdmin",
+                    NormalizedName = "SysAdmin".ToUpper()
                 }
             };
 

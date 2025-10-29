@@ -1,8 +1,9 @@
 ﻿using System.Reflection.Metadata.Ecma335;
+using static AMSSystem.Models.User;
 
 namespace AMSSystem.Models
 {
-    public abstract class Account : BaseEntity<long>
+    public abstract class Account : BaseEntity
     {
         public int AccountId { get; set; }
         public int UserId { get; set; }
@@ -39,7 +40,7 @@ namespace AMSSystem.Models
         {
             return Balance;
         }
-
+    }
         public abstract class WithdrawableAccount : Account
         {
             public decimal WithDrawAmount { get; set; }
@@ -54,20 +55,13 @@ namespace AMSSystem.Models
             
             public override void Deposit(decimal DepositAmt)
             {
-
+                base.Deposit(DepositAmt);
             }
-            public decimal ViewBalance()
-            {
-                return Balance;
-            }
+           
         }
         public class CurrentAccount : WithdrawableAccount
         {
             
-            public decimal ViewBalance()
-            {
-                return Balance;
-            }
         }
 
         public abstract class NonWithDrawableAccount : Account
@@ -92,4 +86,4 @@ namespace AMSSystem.Models
 
     }
 
-}
+

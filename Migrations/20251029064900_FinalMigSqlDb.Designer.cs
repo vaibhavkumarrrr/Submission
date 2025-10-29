@@ -4,16 +4,19 @@ using AMSSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace AMSSystem.Migrations.SQLDbcontextMigrations
+namespace AMSSystem.Migrations
 {
     [DbContext(typeof(SQLDbcontext))]
-    partial class SQLDbcontextModelSnapshot : ModelSnapshot
+    [Migration("20251029064900_FinalMigSqlDb")]
+    partial class FinalMigSqlDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -198,7 +201,7 @@ namespace AMSSystem.Migrations.SQLDbcontextMigrations
                     b.UseTptMappingStrategy();
                 });
 
-            modelBuilder.Entity("AMSSystem.Models.Account+CurrentAccount", b =>
+            modelBuilder.Entity("AMSSystem.Models.CurrentAccount", b =>
                 {
                     b.HasBaseType("AMSSystem.Models.Account");
 
@@ -208,7 +211,7 @@ namespace AMSSystem.Migrations.SQLDbcontextMigrations
                     b.ToTable("CurrentAccounts", "Training");
                 });
 
-            modelBuilder.Entity("AMSSystem.Models.Account+FixedDepositAccount", b =>
+            modelBuilder.Entity("AMSSystem.Models.FixedDepositAccount", b =>
                 {
                     b.HasBaseType("AMSSystem.Models.Account");
 
@@ -221,7 +224,7 @@ namespace AMSSystem.Migrations.SQLDbcontextMigrations
                     b.ToTable("FDAccount", "Training");
                 });
 
-            modelBuilder.Entity("AMSSystem.Models.Account+SavingsAccount", b =>
+            modelBuilder.Entity("AMSSystem.Models.SavingsAccount", b =>
                 {
                     b.HasBaseType("AMSSystem.Models.Account");
 
@@ -293,29 +296,29 @@ namespace AMSSystem.Migrations.SQLDbcontextMigrations
                         .HasForeignKey("AccountId");
                 });
 
-            modelBuilder.Entity("AMSSystem.Models.Account+CurrentAccount", b =>
+            modelBuilder.Entity("AMSSystem.Models.CurrentAccount", b =>
                 {
                     b.HasOne("AMSSystem.Models.Account", null)
                         .WithOne()
-                        .HasForeignKey("AMSSystem.Models.Account+CurrentAccount", "AccountId")
+                        .HasForeignKey("AMSSystem.Models.CurrentAccount", "AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("AMSSystem.Models.Account+FixedDepositAccount", b =>
+            modelBuilder.Entity("AMSSystem.Models.FixedDepositAccount", b =>
                 {
                     b.HasOne("AMSSystem.Models.Account", null)
                         .WithOne()
-                        .HasForeignKey("AMSSystem.Models.Account+FixedDepositAccount", "AccountId")
+                        .HasForeignKey("AMSSystem.Models.FixedDepositAccount", "AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("AMSSystem.Models.Account+SavingsAccount", b =>
+            modelBuilder.Entity("AMSSystem.Models.SavingsAccount", b =>
                 {
                     b.HasOne("AMSSystem.Models.Account", null)
                         .WithOne()
-                        .HasForeignKey("AMSSystem.Models.Account+SavingsAccount", "AccountId")
+                        .HasForeignKey("AMSSystem.Models.SavingsAccount", "AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

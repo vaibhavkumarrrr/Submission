@@ -1,6 +1,6 @@
 ﻿namespace AMSSystem.Models
 {
-    public class User : BaseEntity<long>
+    public class User : BaseEntity
     {
         public int UserId { get; set; }
         //public int AccountId { get; set; }
