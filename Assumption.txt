@@ -10,10 +10,15 @@ Using the identitroles method , from ASP.NETcore.jwt.Authentication
 
 RBAC- is extended only on the Actions and not as a actor.
 
-ViewOnly--->readonly 
-Admin , SuperUser------>write
 
 p.s core concepts is , both cateogory would have different jwt tokens, and would be bound to authorize to the same.
 
 
 Example- BankManger has SuperUser access.
+
+superuser-CRUD RIGHTS
+SysAdmin- CU
+Admin-UR
+Viewonly-R
+
+for now- EverUser - associated to employee (WIP), 

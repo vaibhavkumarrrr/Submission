@@ -22,7 +22,7 @@ Handle errors and inputs properly.
 
 AUTHENTICATION- JWT TOKENS WITH SHA256- LIFE TIME 15 MINS
 
-AUTHORIZATION - ViewOnly, Admin , SuperUser.
+AUTHORIZATION - ViewOnly, Admin , SuperUser,SysAdmin
 
 
 
