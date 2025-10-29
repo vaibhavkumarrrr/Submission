@@ -1,6 +1,6 @@
 ﻿namespace AMSSystem.Models
 {
-    public class Bank : BaseEntity<long>
+    public class Bank : BaseEntity
     {
         public int BankId { get; set; }
         public int BranchId { get; set; }

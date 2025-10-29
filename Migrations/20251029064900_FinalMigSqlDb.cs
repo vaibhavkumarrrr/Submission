@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace AMSSystem.Migrations.SQLDbcontextMigrations
+namespace AMSSystem.Migrations
 {
     /// <inheritdoc />
-    public partial class addedentity : Migration
+    public partial class FinalMigSqlDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -43,7 +43,11 @@ namespace AMSSystem.Migrations.SQLDbcontextMigrations
                 columns: table => new
                 {
                     AccountId = table.Column<int>(type: "int", nullable: false),
-                    WithDrawAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    WithDrawAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -64,7 +68,11 @@ namespace AMSSystem.Migrations.SQLDbcontextMigrations
                 {
                     AccountId = table.Column<int>(type: "int", nullable: false),
                     RateofInterest = table.Column<int>(type: "int", nullable: false),
-                    Maturitydate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Maturitydate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -84,7 +92,11 @@ namespace AMSSystem.Migrations.SQLDbcontextMigrations
                 columns: table => new
                 {
                     AccountId = table.Column<int>(type: "int", nullable: false),
-                    WithDrawAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    WithDrawAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -132,7 +144,11 @@ namespace AMSSystem.Migrations.SQLDbcontextMigrations
                 {
                     UserId = table.Column<int>(type: "int", nullable: false),
                     EmployeeId = table.Column<int>(type: "int", nullable: false),
-                    EmployeeName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    EmployeeName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {

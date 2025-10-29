@@ -4,16 +4,19 @@ using AMSSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace AMSSystem.Migrations
+namespace AMSSystem.Migrations.AuthDb
 {
     [DbContext(typeof(AuthDbContext))]
-    partial class AuthDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251029065248_AuthDb4roles")]
+    partial class AuthDb4roles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,6 +72,13 @@ namespace AMSSystem.Migrations
                             ConcurrencyStamp = "eb91c622-04cb-46a7-8282-09bf71864199",
                             Name = "SuperUser",
                             NormalizedName = "SUPERUSER"
+                        },
+                        new
+                        {
+                            Id = "eb91c622-04cb-46a7-8282-09bf71864188",
+                            ConcurrencyStamp = "eb91c622-04cb-46a7-8282-09bf71864188",
+                            Name = "SysAdmin",
+                            NormalizedName = "SYSADMIN"
                         });
                 });
 

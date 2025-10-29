@@ -1,6 +1,6 @@
 ﻿namespace AMSSystem.Models
 {
-    public class Branch:BaseEntity<long>
+    public class Branch:BaseEntity
     {
         public int BranchId { get; set; }
 

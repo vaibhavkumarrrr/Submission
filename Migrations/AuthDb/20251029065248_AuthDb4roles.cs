@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace AMSSystem.Migrations
+namespace AMSSystem.Migrations.AuthDb
 {
     /// <inheritdoc />
-    public partial class addauthrolesadded : Migration
+    public partial class AuthDb4roles : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -163,6 +163,7 @@ namespace AMSSystem.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
+                    { "eb91c622-04cb-46a7-8282-09bf71864188", "eb91c622-04cb-46a7-8282-09bf71864188", "SysAdmin", "SYSADMIN" },
                     { "eb91c622-04cb-46a7-8282-09bf71864197", "eb91c622-04cb-46a7-8282-09bf71864197", "Viewonly", "VIEWONLY" },
                     { "eb91c622-04cb-46a7-8282-09bf71864198", "eb91c622-04cb-46a7-8282-09bf71864198", "Admin", "ADMIN" },
                     { "eb91c622-04cb-46a7-8282-09bf71864199", "eb91c622-04cb-46a7-8282-09bf71864199", "SuperUser", "SUPERUSER" }
