@@ -11,8 +11,11 @@ namespace AMSSystem.Controllers
     [ApiController]
     public class UserController(SQLDbcontext sqlDBContext, IUser user) : ControllerBase
     {
+        private readonly SQLDbcontext sqlDBContext = sqlDBContext;
+        private readonly IUser user = user;
+
         [HttpGet]
-        [Authorize(Roles = "ViewOnly,SuperUser,Admin,SysAdmin")]
+        [Authorize(Roles = "Viewonly,SuperUser,Admin,SysAdmin")]
         public async Task<IActionResult> GetAllAsync()
         {
             var result = await user.GetAllAsync();
@@ -20,7 +23,7 @@ namespace AMSSystem.Controllers
         }
         [HttpGet]
         [Route("{id:int}")]
-        [Authorize(Roles = "ViewOnly,SuperUser,Admin,SysAdmin")]
+        [Authorize(Roles = "Viewonly,SuperUser,Admin,SysAdmin")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var result = await user.GetByIdAsync(id);
