@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Time Example</title>
+    <style>
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            background: #007bff;
+            color: white;
+            border-radius: 5px;
+        }
+        #time {
+            font-size: 24px;
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <button id="showTimeBtn">Show Time</button>
+    <div id="time">Click the button to show time</div>
+
+    <script>
+        try {
+            const button = document.getElementById('showTimeBtn');
+            const timeDisplay = document.getElementById('time');
+
+            button.addEventListener('click', () => {
+                setInterval(() => {
+                    const currentTime = new Date().toLocaleTimeString();
+                    console.log(currentTime);
+                    timeDisplay.textContent = currentTime;
+                }, 1000);
+            });
+        } catch (err) {
+            console.error("Error in DOM Module:", err.message);
+        }
+    </script>
+</body>
+</html>
