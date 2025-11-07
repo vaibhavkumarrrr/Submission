@@ -506,3 +506,55 @@ try {
 } catch (err) {
     console.error("Error in Destructuring Module:", err.message);
 }
+
+#!javascript
+
+//let reverse=([x,...y])=>(y.length>0)?[...reverse(y),x]:[x];
+//1.function that ake input of 2 arrays--overload one for string
+//or for number
+//1.5 flatter the array first
+//2. common elemts logic 
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
+function findcommon(arr1, arr2) {
+    var v1;
+    var v2;
+    if (typeof (arr1) === "string") {
+        v1 = [arr1.toLowerCase()];
+        v2 = [arr2.toLowerCase()];
+    }
+    else {
+        v1 = __spreadArray([], arr1, true);
+        v2 = __spreadArray([], arr2, true);
+    }
+    var result = new Set();
+    var _loop_1 = function (i) {
+        var _loop_2 = function (j) {
+            if (v1.findIndex(function () { return v1[i] == v2[j]; }) >= 0) {
+                result.add(v1[i]);
+                return "break";
+            }
+            return { value: __spreadArray([], result, true) };
+        };
+        for (var j = 0; j < v2.length; j++) {
+            var state_2 = _loop_2(j);
+            if (typeof state_2 === "object")
+                return state_2;
+            if (state_2 === "break")
+                break;
+        }
+    };
+    for (var i = 0; i < v1.length; i++) {
+        var state_1 = _loop_1(i);
+        if (typeof state_1 === "object")
+            return state_1.value;
+    }
+}
+console.log(findcommon("vaibhav", "vaibhav"));

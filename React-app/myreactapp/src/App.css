@@ -1,0 +1,17 @@
+.welcomeBody{
+  background-color: plum;
+  padding: 10 em;
+  min-height: 10rem;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  border-radius: 2em;
+  display: grid;
+  place-items:center;
+}
+.component1 h1{
+  color: black;
+}

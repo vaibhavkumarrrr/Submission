@@ -1,0 +1,38 @@
+{
+    "compilerOptions": {
+      
+      "rootDir": "./src",
+      "outDir": "./dist",
+   
+      
+      "module": "ESNext",              
+      "target": "ES2020",              
+      "lib": ["ES2020", "DOM"],        
+      "types": ["node"],
+     
+      "sourceMap": true,
+      "declaration": true,
+      "declarationMap": true,
+   
+     
+      "strict": true,
+      "noUncheckedIndexedAccess": true,
+      "exactOptionalPropertyTypes": true,
+      "skipLibCheck": true,
+   
+      
+      "esModuleInterop": true,
+      "moduleResolution": "node",
+      "isolatedModules": true,
+      "forceConsistentCasingInFileNames": true,
+   
+      
+      "noUncheckedSideEffectImports": true,
+      "moduleDetection": "force",
+   
+      
+      "downlevelIteration": true
+    },
+    "include": ["src/**/*", "*.ts", "../../CW/nov_5.ts"],
+    "exclude": ["node_modules"]
+  }
