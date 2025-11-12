@@ -51,7 +51,7 @@ namespace AMSSystem.Controllers
         
         [HttpPost]
         [Route("Login")]
-        public async Task<IActionResult> Login(LoginRequestDTO loginRequestDTO)
+        public async Task<IActionResult> Login([FromBody] LoginRequestDTO loginRequestDTO)
         {
             
             var user = await usermanager.FindByEmailAsync(loginRequestDTO.Username);
