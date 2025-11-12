@@ -1,7 +1,7 @@
-const Component1=(props)=>{
-    return (
-        <h1>from componenet1 {props.name}</h1>
-        
-    )
-}
+import {useState } from 'react';
+function Component1(props) {
+    const [count, setCount] = useState(0);
+    return <div>{props.name}: {count}</div>;
+  }
+  
 export default Component1;

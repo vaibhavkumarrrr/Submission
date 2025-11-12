@@ -18,6 +18,16 @@ public class Program
         builder.Services.AddControllers();
 
         builder.Services.AddEndpointsApiExplorer();
+
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowFrontend", policy =>
+            {
+                policy.WithOrigins("http://localhost:3000")
+                      .AllowAnyHeader()
+                      .AllowAnyMethod();
+            });
+        });
         builder.Services.AddSwaggerGen(options =>
         {
             options.SwaggerDoc("v1", new OpenApiInfo { Title = "AMS", Version = "v1" });
@@ -92,10 +102,15 @@ public class Program
         });
         builder.Services.AddScoped<IUser,SQLUser>();
 
+
+       
+
+
         var app = builder.Build();
 
-        
 
+        
+       
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
@@ -107,6 +122,7 @@ public class Program
 
         app.UseHttpsRedirection();
 
+        app.UseCors("AllowFrontend");
         app.UseAuthentication();
         app.UseAuthorization();
 
