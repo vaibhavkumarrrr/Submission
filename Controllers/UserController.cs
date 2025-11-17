@@ -4,6 +4,7 @@ using AMSSystem.Models.DTO;
 using AMSSystem.Repos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using static AMSSystem.Models.DTO.AccountDTO;
 
 namespace AMSSystem.Controllers
 {
@@ -15,7 +16,7 @@ namespace AMSSystem.Controllers
         private readonly IUser user = user;
 
         [HttpGet]
-        [Authorize(Roles = "Viewonly,SuperUser,Admin,SysAdmin")]
+        [Authorize(Roles = "ViewOnly,Admin,SuperAdmin")]
         public async Task<IActionResult> GetAllAsync()
         {
             var result = await user.GetAllAsync();
@@ -23,7 +24,7 @@ namespace AMSSystem.Controllers
         }
         [HttpGet]
         [Route("{id:int}")]
-        [Authorize(Roles = "Viewonly,SuperUser,Admin,SysAdmin")]
+        [Authorize(Roles = "ViewOnly,User,SuperAdmin")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var result = await user.GetByIdAsync(id);
@@ -31,7 +32,7 @@ namespace AMSSystem.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "SuperUser,SysAdmin,Admin")]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> CreateUser([FromBody] UserDTO userDto)
         {
 
@@ -39,7 +40,7 @@ namespace AMSSystem.Controllers
             return Ok(result);
         }
         [HttpPut]
-        [Authorize(Roles ="SuperUser,SysAdmin")]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         [Route("{id:int}")]
         public async Task<IActionResult> UpdateUser([FromRoute] int id, UserDTO userDto)
         {
@@ -51,7 +52,7 @@ namespace AMSSystem.Controllers
             return BadRequest();
         }
         [HttpDelete]
-        [Authorize(Roles ="SuperUser")]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         [Route("{id:int}")]
         public async Task<IActionResult> DeleteUser([FromRoute] int id)
         {
@@ -62,5 +63,19 @@ namespace AMSSystem.Controllers
             return Ok(deleteUser);
 
         }
+        [HttpGet]
+        [Authorize(Roles = "ViewOnly,User,Admin,SuperAdmin")]
+        [Route("{id:int}/accounts")]
+        public async Task<ActionResult<AccountListItemDto>> GetUserAccounts(
+                [FromRoute] int id,
+                [FromQuery] int? bankId,
+                [FromQuery] AccountTypeDto? accountType,
+                CancellationToken ct = default)
+            {
+                var result = await user.GetUserAccountsAsync(
+                    id, bankId, accountType, ct);
+
+                return Ok(result);
+            }
     }
 }

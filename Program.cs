@@ -100,16 +100,31 @@ public class Program
                     Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
             };
         });
-        builder.Services.AddScoped<IUser,SQLUser>();
-
-
-       
-
-
-        var app = builder.Build();
-
+        using var serviceProvider = new ServiceCollection()
+            .AddLogging(configure =>
+            {
+                configure.ClearProviders(); // Remove default providers
+                configure.AddConsole();     // Add console logging
+                configure.SetMinimumLevel(LogLevel.Debug); // Set log level
+            })
+            .BuildServiceProvider();
 
         
+        var logger = serviceProvider
+            .GetRequiredService<ILogger<Program>>();
+
+        logger.LogTrace("This is a TRACE message (very detailed).");
+        logger.LogDebug("This is a DEBUG message (for debugging).");
+
+        builder.Services.AddScoped<IUser,SQLUser>();
+
+        builder.Services.AddScoped<IAccountService, AccountService>();
+
+        builder.Services.AddScoped<IBankUser,SQLBankUser>();
+
+        builder.Services.AddScoped<IBank,SQLBank>();
+
+        var app = builder.Build();    
        
 
         // Configure the HTTP request pipeline.

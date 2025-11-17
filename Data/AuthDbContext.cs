@@ -34,22 +34,22 @@ namespace AMSSystem.Data
                 {
                     Id = WriterRoleId,
                     ConcurrencyStamp = WriterRoleId,
-                    Name = "Admin",
-                    NormalizedName = "Admin".ToUpper()
+                    Name = "User",
+                    NormalizedName = "User".ToUpper()
                 },
                 new IdentityRole
                 {
                     Id = SuperUserRoleId ,
                     ConcurrencyStamp = SuperUserRoleId ,
-                    Name = "SuperUser",
-                    NormalizedName = "SuperUser".ToUpper()
+                    Name = "Admin",
+                    NormalizedName = "Admin".ToUpper()
                 },
                 new IdentityRole
                 {
                     Id = SysAdminRoleId ,
                     ConcurrencyStamp = SysAdminRoleId ,
-                    Name = "SysAdmin",
-                    NormalizedName = "SysAdmin".ToUpper()
+                    Name = "SuperAdmin",
+                    NormalizedName = "SuperAdmin".ToUpper()
                 }
             };
 

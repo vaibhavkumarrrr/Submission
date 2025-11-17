@@ -3,6 +3,7 @@ using AMSSystem.Models;
 using AMSSystem.Models.DTO;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using static AMSSystem.Models.DTO.AccountDTO;
 using static AMSSystem.Models.User;
 
 namespace AMSSystem.Repos
@@ -72,5 +73,36 @@ namespace AMSSystem.Repos
 
 
         }
+
+        public async Task<List<AccountListItemDto>>GetUserAccountsAsync(
+           int userId,
+           int? bankId,
+           AccountTypeDto? accountType,
+           CancellationToken ct)
+        {
+            
+            bool userExists = await dbcontext.users.AsNoTracking().AnyAsync(u => u.UserId == userId, ct);
+            if (!userExists)
+                throw new KeyNotFoundException($"User {userId} not found");
+
+            IQueryable<Account> query = dbcontext.Accounts.AsNoTracking().Where(a => a.UserId == userId);
+
+            if (bankId.HasValue) query = query.Where(a => a.BankId == bankId.Value);
+            
+            if (accountType.HasValue) query = query.Where(a => (int)a.AccountType == (int)accountType.Value);
+
+           var total = await query.LongCountAsync(ct);
+            var items = await query
+                .Select(a => new AccountListItemDto(
+                    a.AccountId,
+                    (AccountTypeDto)a.AccountType,
+                    a.Balance,
+                    a.BankId
+                    ))
+                .ToListAsync(ct);
+
+            return items;
+        }
     }
 }
+

@@ -6,7 +6,7 @@ export default function Navbar({ onLogout }) {
 
   const linkStyle = (path) => ({
     color: location.pathname === path ? '#fff' : '#ccc',
-    textDecoration: 'none',
+    textDecoration: location.pathname === path ? 'Underline' : 'none',
     fontWeight: 'bold',
     padding: '0.5rem 1rem',
   });
@@ -14,7 +14,7 @@ export default function Navbar({ onLogout }) {
   return (
     <nav className="navbar">
       <div className="nav-left">
-        <Link style={linkStyle('/')} to="/">Home</Link>
+        <Link style={linkStyle('/Home')} to="/Home">Home</Link>
         <Link style={linkStyle('/settings')} to="/settings">Settings</Link>
         <Link style={linkStyle('/users')} to="/users">Users</Link>
         <Link style={linkStyle('/about')} to="/about">About</Link>
