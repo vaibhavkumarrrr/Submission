@@ -60,22 +60,22 @@ namespace AMSSystem.Migrations.AuthDb
                         {
                             Id = "eb91c622-04cb-46a7-8282-09bf71864198",
                             ConcurrencyStamp = "eb91c622-04cb-46a7-8282-09bf71864198",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
+                            Name = "User",
+                            NormalizedName = "USER"
                         },
                         new
                         {
                             Id = "eb91c622-04cb-46a7-8282-09bf71864199",
                             ConcurrencyStamp = "eb91c622-04cb-46a7-8282-09bf71864199",
-                            Name = "SuperUser",
-                            NormalizedName = "SUPERUSER"
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "eb91c622-04cb-46a7-8282-09bf71864188",
                             ConcurrencyStamp = "eb91c622-04cb-46a7-8282-09bf71864188",
-                            Name = "SysAdmin",
-                            NormalizedName = "SYSADMIN"
+                            Name = "SuperAdmin",
+                            NormalizedName = "SUPERADMIN"
                         });
                 });
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+
 const API_BASE = 'https://localhost:7000';
 
 export default function AuthForm({ onLogin }) {
@@ -10,6 +11,7 @@ export default function AuthForm({ onLogin }) {
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  
 
   const resetFeedback = () => {
     setMessage('');
@@ -55,6 +57,7 @@ export default function AuthForm({ onLogin }) {
       const token = data?.jwttoken;
       if (!token) throw new Error('No token returned from API');
       onLogin(token);
+      
     } catch (e) {
       setError(e.message);
     } finally {

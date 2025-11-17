@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AMSSystem.Migrations.AuthDb
 {
     /// <inheritdoc />
-    public partial class AuthDb4roles : Migration
+    public partial class AuthForRoles : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -163,10 +163,10 @@ namespace AMSSystem.Migrations.AuthDb
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "eb91c622-04cb-46a7-8282-09bf71864188", "eb91c622-04cb-46a7-8282-09bf71864188", "SysAdmin", "SYSADMIN" },
+                    { "eb91c622-04cb-46a7-8282-09bf71864188", "eb91c622-04cb-46a7-8282-09bf71864188", "SuperAdmin", "SUPERADMIN" },
                     { "eb91c622-04cb-46a7-8282-09bf71864197", "eb91c622-04cb-46a7-8282-09bf71864197", "Viewonly", "VIEWONLY" },
-                    { "eb91c622-04cb-46a7-8282-09bf71864198", "eb91c622-04cb-46a7-8282-09bf71864198", "Admin", "ADMIN" },
-                    { "eb91c622-04cb-46a7-8282-09bf71864199", "eb91c622-04cb-46a7-8282-09bf71864199", "SuperUser", "SUPERUSER" }
+                    { "eb91c622-04cb-46a7-8282-09bf71864198", "eb91c622-04cb-46a7-8282-09bf71864198", "User", "USER" },
+                    { "eb91c622-04cb-46a7-8282-09bf71864199", "eb91c622-04cb-46a7-8282-09bf71864199", "Admin", "ADMIN" }
                 });
 
             migrationBuilder.CreateIndex(

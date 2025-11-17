@@ -9,14 +9,14 @@ import About from './pages/About';
 import Landing from './pages/Landing';
 import NotFound from './pages/NotFoundPage';
 
+
 export default function App() {
   const [jwt, setJwt] = useState(localStorage.getItem('jwt') || '');
-
+  
   const handleLogout = () => {
     localStorage.removeItem('jwt');
     setJwt('');
   };
-
   const handleLogin = (token) => {
     localStorage.setItem('jwt', token);
     setJwt(token);
@@ -37,7 +37,7 @@ export default function App() {
             </>
           ) : (
             <>
-              <Route path="/" element={<Home />} />
+              <Route path="/Home" element={<Home />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/users" element={<Users jwt={jwt} />} />
               <Route path="/about" element={<About />} />

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AMSSystem.Migrations
 {
     /// <inheritdoc />
-    public partial class FinalMigSqlDb : Migration
+    public partial class fullstackmigfinal : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -27,9 +27,9 @@ namespace AMSSystem.Migrations
                     AccountName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Balance = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     AccountType = table.Column<int>(type: "int", nullable: false),
-                    CreatedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
@@ -44,9 +44,9 @@ namespace AMSSystem.Migrations
                 {
                     AccountId = table.Column<int>(type: "int", nullable: false),
                     WithDrawAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    CreatedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
@@ -69,9 +69,9 @@ namespace AMSSystem.Migrations
                     AccountId = table.Column<int>(type: "int", nullable: false),
                     RateofInterest = table.Column<int>(type: "int", nullable: false),
                     Maturitydate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
@@ -93,9 +93,9 @@ namespace AMSSystem.Migrations
                 {
                     AccountId = table.Column<int>(type: "int", nullable: false),
                     WithDrawAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    CreatedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
@@ -121,9 +121,9 @@ namespace AMSSystem.Migrations
                     UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Dateofbirth = table.Column<DateTime>(type: "datetime2", nullable: false),
                     AccountId = table.Column<int>(type: "int", nullable: true),
-                    CreatedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
@@ -145,9 +145,9 @@ namespace AMSSystem.Migrations
                     UserId = table.Column<int>(type: "int", nullable: false),
                     EmployeeId = table.Column<int>(type: "int", nullable: false),
                     EmployeeName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
@@ -173,9 +173,9 @@ namespace AMSSystem.Migrations
                     BankName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BankType = table.Column<int>(type: "int", nullable: false),
                     AccountId = table.Column<int>(type: "int", nullable: true),
-                    CreatedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
@@ -200,9 +200,9 @@ namespace AMSSystem.Migrations
                     BranchPincode = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BranchStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BankId = table.Column<int>(type: "int", nullable: true),
-                    CreatedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>

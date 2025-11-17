@@ -16,9 +16,9 @@ namespace AMSSystem.Data
             
 
             modelBuilder.Entity<Account>().UseTptMappingStrategy().ToTable("Accounts", schema: "Training");
-            modelBuilder.Entity<CurrentAccount>().ToTable("CurrentAccounts", schema: "Training");
-            modelBuilder.Entity<SavingsAccount>().ToTable("SavingsAccount", schema: "Training");
-            modelBuilder.Entity<FixedDepositAccount>().ToTable("FDAccount", schema: "Training");
+            modelBuilder.Entity<CurrentAccount>().ToTable("CurrentAccounts", schema: "Training").HasBaseType<Account>(); ;
+            modelBuilder.Entity<SavingsAccount>().ToTable("SavingsAccount", schema: "Training").HasBaseType<Account>(); ;
+            modelBuilder.Entity<FixedDepositAccount>().ToTable("FDAccount", schema: "Training").HasBaseType<Account>(); ;
 
             modelBuilder.Entity<User>().UseTptMappingStrategy().ToTable("Users", schema: "Training");
             modelBuilder.Entity<BankUser>().ToTable("BankUser", schema: "Training");

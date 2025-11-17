@@ -3,7 +3,7 @@ using static AMSSystem.Models.User;
 
 namespace AMSSystem.Models
 {
-    public abstract class Account : BaseEntity
+    public  abstract class Account : BaseEntity
     {
         public int AccountId { get; set; }
         public int UserId { get; set; }
@@ -45,9 +45,14 @@ namespace AMSSystem.Models
         {
             public decimal WithDrawAmount { get; set; }
 
-            public override void Withdraw(decimal withdrawAmount)
+            public WithdrawableAccount()
+        {
+            Console.WriteLine(this.CreatedBy);
+        }
+
+            public override void Withdraw(decimal WithDrawAmount)
             {
-                base.Withdraw(withdrawAmount);
+                base.Withdraw(WithDrawAmount);
             }
         }
         public class SavingsAccount : WithdrawableAccount
