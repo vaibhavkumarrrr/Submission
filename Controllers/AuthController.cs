@@ -66,7 +66,7 @@ namespace AMSSystem.Controllers
                 {
                     
                     var roles = await usermanager.GetRolesAsync(user);
-
+                    
                     if (roles != null)
                     {
                         
@@ -76,6 +76,7 @@ namespace AMSSystem.Controllers
                         var response = new LoginResponseDTO
                         {
                             jwttoken = jwttoken,
+                            Roles = roles.ToArray()
                         };
                         return Ok(response);
                     }

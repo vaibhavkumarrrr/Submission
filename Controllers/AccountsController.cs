@@ -7,6 +7,8 @@ using static AMSSystem.Models.DTO.AccountDTO;
 
 namespace AMSSystem.Controllers
 {
+    [Route("api/")]
+    [ApiController]
     public class AccountsController:ControllerBase
     {
         private readonly IAccountService _service;
