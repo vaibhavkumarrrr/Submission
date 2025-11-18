@@ -1,0 +1,28 @@
+import React from 'react';
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '../Context/AuthContext';
+import NotAuthorized from '../Pages/NotAuthorized';
+
+type Props = {
+  children: React.ReactNode;
+  roles?: string[];      // e.g., ['admin', 'superadmin']
+  requireAuth?: boolean; // default true
+};
+
+const ProtectedRoute: React.FC<Props> = ({ children, roles = [], requireAuth = true }) => {
+  const { token, hasRole } = useAuth();
+
+  // If route requires authentication and no token, redirect to login
+  if (requireAuth && !token) {
+    return <Navigate to="/login" replace />;
+  }
+
+  // If specific roles required and user lacks them, show Not Authorized
+  if (roles.length && !hasRole(...roles)) {
+    return <NotAuthorized />;
+  }
+
+  return <>{children}</>;
+};
+
+export default ProtectedRoute;
