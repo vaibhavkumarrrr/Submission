@@ -19,16 +19,14 @@ const App: React.FC = () => {
     <>
       <NavBar />
       <Routes>
-        {/* Public */}
+        
         <Route path="/" element={<Landing />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
 
-        {/* Auth pages */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
-        {/* Protected: Home (any authenticated user) */}
         <Route
           path="/home"
           element={
@@ -38,7 +36,6 @@ const App: React.FC = () => {
           }
         />
 
-        {/* Protected: Accounts (any authenticated user) */}
         <Route
           path="/accounts"
           element={
@@ -48,7 +45,6 @@ const App: React.FC = () => {
           }
         />
 
-        {/* Protected: Banks (only Admin or SuperAdmin) */}
         <Route
           path="/banks"
           element={

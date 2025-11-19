@@ -17,7 +17,6 @@ type AuthState = {
 };
 
 type AuthContextValue = AuthState & {
-  /** Signature: login(token, roles?, username?, mandatoryId?) */
   login: (token: string, rolesFromApi?: string[], mandatoryId?: string) => void;
   logout: () => void;
   hasRole: (...allowed: string[]) => boolean;
@@ -28,7 +27,7 @@ const AuthContext = createContext<AuthContextValue | null>(null);
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [state, setState] = useState<AuthState>({ token: null, user: null });
 
-  // Restore session on app load (token + mandatoryId)
+  
   useEffect(() => {
     const existing = getToken();
     const storedMandatoryId = getMandatoryId() || undefined;
@@ -43,7 +42,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           roles,
           sub: claims?.sub as string | undefined,
           claims,
-          mandatoryId: storedMandatoryId, // ✅ bring it back after refresh
+          mandatoryId: storedMandatoryId, 
         },
       });
     } else {
@@ -57,7 +56,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     token: state.token,
     user: state.user,
     login: (token, rolesFromApi, mandatoryId) => {
-      // Persist both token and mandatoryId
       saveToken(token);
       if (mandatoryId) saveMandatoryId(mandatoryId);
 
