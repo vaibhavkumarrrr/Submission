@@ -4,8 +4,7 @@ import { registerUser } from '../services/api';
 import { useAuth } from '../Context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
-const SECRET_KEY = 'Vaibhav'; // Your hardcoded one-time secret
-
+const SECRET_KEY = 'Vaibhav'; 
 const Register: React.FC = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -40,7 +39,6 @@ const Register: React.FC = () => {
     setBusy(true);
     try {
       const { jwttoken } = await registerUser(form);
-      // Optional: auto-login after register
       login(jwttoken);
       navigate('/');
     } catch (err: any) {

@@ -6,8 +6,6 @@ export const API_BASE = 'https://localhost:7000/api';
 export type HttpOk<T> = { ok: true; status: number; data: T };
 export type HttpNotFound = { ok: false; status: 404; error: 'This AccountType does not Exist' };
 export type HttpError = { ok: false; status: number; error: string };
-
-
 export type HttpResult<T> = HttpOk<T> | HttpNotFound | HttpError;
 
 type ExtraInit = RequestInit & { skipAuth?: boolean };
@@ -37,18 +35,17 @@ async function handle<T>(res: Response): Promise<HttpResult<T>> {
     return { ok: true, status: res.status, data: body as T };
   }
 
-  // Specific handling for 404 → “type mismatch”
+
   if (res.status === 404) {
-    return { ok: false, status: 404, error: 'type mismatch' };
+    return { ok: false, status: 404, error: 'This Data donot exist' };
   }
 
-  // 401: clear token and return error
+ 
   if (res.status === 401) {
     clearToken();
     return { ok: false, status: 401, error: (body as any)?.message || 'Unauthorized' };
   }
 
-  // Other errors → return message string
   const msg =
     (body as any)?.message ||
     (body as any)?.error ||
@@ -73,6 +70,20 @@ export async function httpPatch<T>(path: string, body?: unknown, init?: ExtraIni
   const res = await fetch(`${API_BASE}${path}`, {
     ...init, method: 'PATCH', headers: buildHeaders(init),
     body: body !== undefined ? JSON.stringify(body) : null
+  });
+  return handle<T>(res);
+}
+
+export async function httpPut<T>(path: string, body?: unknown, init?: ExtraInit): Promise<HttpResult<T>> {
+  const res = await fetch(`${API_BASE}${path}`, {
+    ...init, method: 'PUT', headers: buildHeaders({ ...init, method: 'PUT' }),
+    body: body !== undefined ? JSON.stringify(body) : null
+  });
+  return handle<T>(res);
+}
+export async function httpDelete<T>(path: string, init?: ExtraInit): Promise<HttpResult<T>> {
+  const res = await fetch(`${API_BASE}${path}`, {
+    ...init, method: 'DELETE', headers: buildHeaders({ ...init, method: 'DELETE' })
   });
   return handle<T>(res);
 }

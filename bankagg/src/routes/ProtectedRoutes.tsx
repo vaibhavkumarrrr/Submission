@@ -5,19 +5,19 @@ import NotAuthorized from '../Pages/NotAuthorized';
 
 type Props = {
   children: React.ReactNode;
-  roles?: string[];      // e.g., ['admin', 'superadmin']
-  requireAuth?: boolean; // default true
+  roles?: string[];      
+  requireAuth?: boolean; 
 };
 
 const ProtectedRoute: React.FC<Props> = ({ children, roles = [], requireAuth = true }) => {
   const { token, hasRole } = useAuth();
 
-  // If route requires authentication and no token, redirect to login
+  
   if (requireAuth && !token) {
     return <Navigate to="/login" replace />;
   }
 
-  // If specific roles required and user lacks them, show Not Authorized
+  
   if (roles.length && !hasRole(...roles)) {
     return <NotAuthorized />;
   }

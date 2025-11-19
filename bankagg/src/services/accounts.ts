@@ -1,9 +1,10 @@
 // src/services/accounts.ts
-import { httpGet, httpPost, httpPatch } from './http';
+import type { AccountListItemDto, PagedResult } from './api';
+import { httpGet, httpPost, httpPatch, type HttpResult } from './http';
 
-export type AccountTypeCode = 1 | 2 | 3; // 1=Current, 2=Savings, 3=FD
+export type AccountTypeCode = 1 | 2 | 3; 
 
-/** List item shape from GET /accounts/{id} */
+
 export type AccountListItem = {
   accountId: number;
   accountType: AccountTypeCode;
@@ -18,7 +19,6 @@ export type Paginated<T> = {
   totalCount: number;
 };
 
-/** PATCH response shapes (examples from your samples) */
 export type PatchCurrentSavingsResponse = {
   withDrawAmount?: number;
   depositAmt?: number;
@@ -31,12 +31,11 @@ export type PatchCurrentSavingsResponse = {
 
 export type PatchFDResponse = {
   rateOfInterest?: number;
-  maturityDate?: string; // ISO date
+  maturityDate?: string; 
 };
 
-/** Create payloads */
 export type CreateCurrentPayload = {
-  userId: string;     // mandatoryId from login
+  userId: string;     
   bankId: number;
   openingBalance: number;
   overdraftLimit?: number;
@@ -55,7 +54,7 @@ export type CreateFDPayload = {
   tenureMonths?: number;
 };
 
-/** Update (PATCH) payloads */
+
 export type PatchCurrentPayload = {
   userId: string;
   depositAmt?: number;
@@ -77,7 +76,7 @@ export type PatchFDPayload = {
   tenureMonths?: number;
 };
 
-/** Helper: map numeric type to label */
+
 export function labelForType(t: AccountTypeCode) {
   switch (t) {
     case 1: return 'Current';
@@ -87,9 +86,8 @@ export function labelForType(t: AccountTypeCode) {
   }
 }
 
-/** ------- GET lists (use mandatoryId in path) ------- */
+
 export async function getAllAccounts(userId: string, pageNumber = 1, pageSize = 20) {
-  // If backend supports pagination via query params:
   const qp = `?pageNumber=${pageNumber}&pageSize=${pageSize}`;
   return httpGet<Paginated<AccountListItem>>(`/accounts/${encodeURIComponent(userId)}`);
 }
@@ -143,4 +141,14 @@ export async function patchFDAccount(accountId: number, payload: PatchFDPayload)
   return httpPatch<PatchFDResponse>(`/accounts/FD/${accountId}`, payload, {
     headers: { 'X-Mandatory-Id': payload.userId }
   });
+
 }
+export const accountsApi = {
+  listPaged: (pageNumber: number, pageSize: number): Promise<HttpResult<PagedResult<AccountListItemDto>>> => {
+    const params = new URLSearchParams({
+      pageNumber: String(pageNumber),
+      pageSize: String(pageSize),
+    });
+    return httpGet<PagedResult<AccountListItemDto>>(`/accounts?${params.toString()}`);
+  },
+};

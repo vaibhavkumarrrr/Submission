@@ -11,10 +11,6 @@ import {
 } from '../services/accounts';
 import type { HttpResult } from '../services/http';
 
-// -------------------------------------------
-// Helpers
-// -------------------------------------------
-
 type TabKey = 'overview' | 'current' | 'savings' | 'fd';
 
 const TYPE_CODE: Record<Exclude<TabKey, 'overview'>, number> = {
@@ -23,7 +19,7 @@ const TYPE_CODE: Record<Exclude<TabKey, 'overview'>, number> = {
   fd: 3,
 };
 
-// Robust normalizer
+
 function normalizeListToItems(data: any): { items: any[]; totalCount: number } {
   if (data && Array.isArray(data.items)) {
     const total = Number.isFinite(data.totalCount) ? data.totalCount : data.items.length;
@@ -61,7 +57,7 @@ function filterByTab(items: any[], tab: TabKey): any[] {
   return items.filter(i => Number(i.accountType) === code);
 }
 
-// Section renderer with filtering
+
 function renderSectionForTab(
   tab: TabKey,
   res: HttpResult<any> | null,
@@ -133,12 +129,6 @@ function renderSectionForTab(
   return <div style={{ color: 'var(--danger)', fontWeight: 600 }}>{res.error}</div>;
 }
 
-
-
-// -------------------------------------------
-// Component
-// -------------------------------------------
-
 const Accounts: React.FC = () => {
   const { user } = useAuth();
   const mandatoryId = user?.mandatoryId ?? getMandatoryId() ?? '';
@@ -147,7 +137,6 @@ const Accounts: React.FC = () => {
   const [page, setPage] = useState({ overview: 1, current: 1, savings: 1, fd: 1 });
   const pageSize = 10;
 
-  // Raw HttpResult objects
   const [overviewRes, setOverviewRes] = useState<HttpResult<any> | null>(null);
   const [currentRes,  setCurrentRes ] = useState<HttpResult<any> | null>(null);
   const [savingsRes,  setSavingsRes ] = useState<HttpResult<any> | null>(null);
@@ -184,8 +173,6 @@ const Accounts: React.FC = () => {
 
   return (
     <GridContainer>
-
-      {/* Header */}
       <div className="col-12">
         <div className="card" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
@@ -208,10 +195,10 @@ const Accounts: React.FC = () => {
         </div>
       </div>
 
-      {/* Lists */}
+      
       <div className="col-8 col-lg-12 col-sm-12">
 
-        {/* Overview */}
+        
         {activeTab === 'overview' && (
           <div className="card">
             <h3 style={{ marginTop: 0 }}>All Accounts</h3>
@@ -222,7 +209,7 @@ const Accounts: React.FC = () => {
           </div>
         )}
 
-        {/* Current */}
+        
         {activeTab === 'current' && (
           <div className="card">
             <h3 style={{ marginTop: 0 }}>Current Accounts</h3>
@@ -233,7 +220,7 @@ const Accounts: React.FC = () => {
           </div>
         )}
 
-        {/* Savings */}
+        
         {activeTab === 'savings' && (
           <div className="card">
             <h3 style={{ marginTop: 0 }}>Savings Accounts</h3>
@@ -244,7 +231,7 @@ const Accounts: React.FC = () => {
           </div>
         )}
 
-        {/* FD */}
+        
         {activeTab === 'fd' && (
           <div className="card">
             <h3 style={{ marginTop: 0 }}>Fixed Deposits</h3>
@@ -256,7 +243,7 @@ const Accounts: React.FC = () => {
         )}
       </div>
 
-      {/* Right Panel */}
+     
       <div className="col-4 col-lg-4 col-sm-12">
         <div className="card">
           <h3 style={{ marginTop: 0 }}>Actions</h3>

@@ -82,7 +82,7 @@ const Login: React.FC = () => {
               <label>Mandatory ID</label>
               <input
                 type="text"
-                placeholder="Enter your required ID"
+                placeholder="CA-92,SA-10,FD-192"
                 value={form.mandatoryId}
                 onChange={(e) => setForm({ ...form, mandatoryId: e.target.value })}
                 required

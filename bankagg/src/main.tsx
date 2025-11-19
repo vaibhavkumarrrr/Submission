@@ -9,7 +9,7 @@ const AutoRedirect: React.FC<{ children: React.ReactNode }> = ({ children }) => 
   const { token } = useAuth();
   const location = useLocation();
 
-  // If user is logged in and tries to access /login or /register, redirect to /home
+  
   if (token && (location.pathname === '/login' || location.pathname === '/register')) {
     return <Navigate to="/home" replace />;
   }
